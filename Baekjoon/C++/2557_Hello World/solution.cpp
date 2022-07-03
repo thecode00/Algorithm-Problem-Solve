@@ -2,8 +2,10 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
-    std::cout << "Hello World";
+    cout << "Hello World" << endl; // cout은 출력역할, endl은 줄바꿈
     return 0;
 }
