@@ -8,11 +8,10 @@ class Node:
         self.children = children
 """
 
-# https://leetcode.com/problems/n-ary-tree-preorder-traversal/discuss/148867/Python-short-iterative-solution-beats-100-66-ms-faster-than-fastest-!
-
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        # print(root.children, root.val)
         answer, q = [], root and [root]
         while q:
             node = q.pop()
