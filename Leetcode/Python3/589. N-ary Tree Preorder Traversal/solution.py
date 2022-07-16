@@ -16,5 +16,5 @@ class Solution:
         while q:
             node = q.pop()
             answer.append(node.val)
-            q += [child for child in node.children[::-1] if child]
+            q += [child for child in reversed(node.children) if child]
         return answer
