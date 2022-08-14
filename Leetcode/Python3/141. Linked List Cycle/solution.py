@@ -17,3 +17,10 @@ class Solution:
             if slow == fast:
                 return True
         return False
+    def hasCycle(self, head: Optional[ListNode]) -> bool:   # Runtime: 86 ms
+        slow, fast = head, head
+        while fast and fast.next != None:
+            slow, fast = slow.next, fast.next.next
+            if slow == fast:
+                return True
+        return False
