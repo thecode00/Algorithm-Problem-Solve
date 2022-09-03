@@ -25,3 +25,21 @@ class Solution:
         for level in level_total:
             answer.append(level_total[level] / node_amount[level])
         return answer
+
+    # Ref: https://leetcode.com/problems/average-of-levels-in-binary-tree/discuss/1094399/Python-simple-bfs-explained
+    def averageOfLevels(self, root):
+        queue = deque([root])
+        result = []
+
+        while queue:
+            k, sum = len(queue), 0
+            for i in range(k):
+                node = queue.popleft()
+                sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            result.append(sum/k)
+
+        return result
