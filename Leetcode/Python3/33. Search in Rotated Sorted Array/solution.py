@@ -13,12 +13,15 @@ class Solution:
 
             if nums[mid] == target:
                 return mid
-
+            # left rotated  ex. 3 4 5 1 2
+            #                      mid
             if nums[mid] > nums[start]:
                 if nums[start] <= target and nums[mid] > target:
                     end = mid - 1
                 else:
                     start = mid + 1
+            # right rotated  ex. 5 1 2 3 4
+            #                       mid
             else:
                 if nums[end] >= target and target > nums[mid]:
                     start = mid + 1
