@@ -1,6 +1,7 @@
 """
 https://codeforces.com/problemset/problem/230/B
 Time Complexity: O(N)
+TODO: problem solve
 """
 
 from math import sqrt
