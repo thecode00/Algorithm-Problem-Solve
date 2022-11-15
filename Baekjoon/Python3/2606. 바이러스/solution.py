@@ -12,7 +12,7 @@ for _ in range(int(input())):
     # 양방향 연결
     computer[start].append(end)
     computer[end].append(start)
-    print(1 + 2)
+
 
 # DFS
 stack = [1]

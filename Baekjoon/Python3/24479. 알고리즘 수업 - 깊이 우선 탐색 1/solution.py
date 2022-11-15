@@ -13,8 +13,8 @@ for _ in range(M):
     edge[start].append(end)  # 양방향 노선
     edge[end].append(start)
 
-for l in edge:  # 정점 번호를 오름차순으로 방문하기위해 각 간선을 정렬
-    l.sort(key=lambda x: -x)
+for i in edge:  # 정점 번호를 오름차순으로 방문하기위해 각 간선을 정렬
+    i.sort(key=lambda x: -x)
 
 node[R] = 1
 stack, visit = edge[R], 2
