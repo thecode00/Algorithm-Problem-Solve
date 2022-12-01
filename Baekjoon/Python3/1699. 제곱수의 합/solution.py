@@ -1,6 +1,6 @@
 """
 https://www.acmicpc.net/problem/1699
-Time Complexity: O()
+Time Complexity: O(N)
 """
 
 
