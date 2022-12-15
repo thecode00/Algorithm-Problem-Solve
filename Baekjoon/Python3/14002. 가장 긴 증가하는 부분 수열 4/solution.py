@@ -3,6 +3,7 @@ https://www.acmicpc.net/problem/14002
 Time Complexity: O(N²)
 """
 
+
 import sys
 
 input = sys.stdin.readline
