@@ -32,3 +32,4 @@ for _ in range(m):
             node[parent_a] = parent_b
         elif parent_a < parent_b:
             node[parent_b] = parent_a
+    print(node)
