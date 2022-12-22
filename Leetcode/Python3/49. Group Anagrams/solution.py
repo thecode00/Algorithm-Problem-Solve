@@ -10,5 +10,6 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         str_dict = defaultdict(list)
         for s in strs:
-            str_dict[tuple(sorted(s))].append(s)
+            # sorted() return sorted list so use join() replace list to string
+            str_dict["".join(sorted(s))].append(s)
         return list(str_dict.values())
