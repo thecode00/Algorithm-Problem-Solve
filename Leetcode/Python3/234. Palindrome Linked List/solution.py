@@ -5,9 +5,12 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+from collections import deque
+
+# Runner
 class Solution:
     def isPalindrome(self, head):
-        rev = None
+        rev = None  # Reversed liked list
         slow = fast = head
         while fast and fast.next:   # Find mid element
             fast = fast.next.next
@@ -19,6 +22,20 @@ class Solution:
             rev = rev.next
         return not rev
 
-
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        queue = deque()
+        
+        if not head:
+            return True
+        
+        while head:
+            queue.append(head.val)
+            head = head.next
+        
+        while len(queue) > 1:
+            if queue.popleft() != queue.pop():
+                return False
+        return True
 
         
