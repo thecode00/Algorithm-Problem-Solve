@@ -7,9 +7,11 @@
 #         self.next = next
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = pre = ListNode(0, head)
-        while pre.next and pre.next.next:
-            slow, fast = pre.next, pre.next.next
-            pre.next, slow.next, fast.next = fast, fast.next, slow
-            pre = slow
+        dummy =  prev = ListNode(None, head)
+        while prev.next and prev.next.next:
+            first, second = prev.next, prev.next.next
+            prev.next = second
+            first.next, second.next = second.next, first
+            prev = first
         return dummy.next
+
