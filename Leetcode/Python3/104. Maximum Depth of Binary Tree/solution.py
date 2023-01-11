@@ -6,19 +6,32 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def dfs(self, root, depth):
-        if root:
-            return max(self.dfs(root.left, depth + 1), self.dfs(root.right, depth + 1))
-        return depth
-    def maxDepth(self, root: Optional[TreeNode]) -> int:    # Runtime: 89 ms
-        return self.dfs(root, 0)
-    
-    def maxDepth(self, root: Optional[TreeNode]) -> int:    # Runtime: 56 ms
-        def dfs(root, depth):
-            if root:
-                return max(dfs(root.left, depth + 1), dfs(root.right, depth + 1))
-            return depth
-        return dfs(root, 0)
+from collections import deque
 
-    
+# Recurssive
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        def dfs(root, depth):
+            if not root:
+                return 0
+            return max(dfs(root.left, depth + 1), dfs(root.right, depth + 1), depth)
+        return dfs(root, 1)
+
+# Use deque
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+
+        depth = 0
+        queue = deque([root])
+        while queue:
+            depth += 1
+            for _ in range(len(queue)):  # Use for loop to pop same depth node
+                cur = queue.popleft()
+                if cur.left:
+                    queue.append(cur.left)
+                if cur.right:
+                    queue.append(cur.right)
+
+        return depth
