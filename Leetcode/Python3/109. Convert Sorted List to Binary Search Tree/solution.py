@@ -19,10 +19,8 @@ class Solution:
 
         if not head.next:
             return TreeNode(head.val)
-
-        # slow = head
-        # fast = slow.next.next
-        slow, fast = head, head.next.next
+        # When head has only two nodes, assign fast to head instead of slow.next.next than infinite loop occurs.
+        slow, fast = head, head.next.next   
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
