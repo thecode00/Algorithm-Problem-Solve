@@ -1,6 +1,7 @@
 """
 https://leetcode.com/problems/binary-tree-inorder-traversal/
 Time Complexity: O(N)
+Ref: https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/283746/All-inorder-traversals-(preorder-inorder-postorder)-in-Python-in-1-line
 """
 
 # Definition for a binary tree node.
@@ -10,7 +11,23 @@ Time Complexity: O(N)
 #         self.left = left
 #         self.right = right
 
-# Ref: https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/283746/All-DFS-traversals-(preorder-inorder-postorder)-in-Python-in-1-line
+
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        answer = []
+
+        def inorder(node: TreeNode) -> None:
+            if not node:
+                return
+
+            inorder(node.left)
+            answer.append(node.val)
+            inorder(node.right)
+
+        inorder(root)
+        return answer
+
+
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         def inorder(root):
