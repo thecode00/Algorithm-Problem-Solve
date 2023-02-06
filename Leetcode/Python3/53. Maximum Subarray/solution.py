@@ -1,13 +1,24 @@
-# https://leetcode.com/problems/maximum-subarray/
+"""
+https://leetcode.com/problems/maximum-subarray/
+Time complexity: O(N)
+"""
 
-from itertools import combinations
 
-# TODO: Solve
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        length = len(nums)
-        answer = 0
-        for i in range(length):
-            for idx in range(length - i):
-                answer = max(answer, sum(nums[idx: idx + i + 1]))
-                print(answer)
+        for idx in range(1, len(nums)):
+            # Add to the current value only when the previous sums are positive.
+            if nums[idx - 1] > 0:
+                nums[idx] += nums[idx - 1]
+        return max(nums)
+
+
+class Solution: # Kadane`s algorithm
+    def maxSubArray(self, nums: List[int]) -> int:
+        best_sum = -float("inf")
+        current_sum = 0
+        for num in nums:
+            current_sum = max(num, current_sum + num)
+            best_sum = max(best_sum, current_sum)
+        
+        return best_sum
