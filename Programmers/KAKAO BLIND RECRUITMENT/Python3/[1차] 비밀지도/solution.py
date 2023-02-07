@@ -17,3 +17,12 @@ def solution(n, arr1, arr2):
             else:
                 answer[y] += " "
     return answer
+
+
+def solution(n, arr1, arr2):    # 두번째 풀이
+    answer = []
+    for n1, n2 in zip(arr1, arr2):
+        # or 비트연산으로 지도합체 파이썬의 2진수는 앞에 0b가 붙어있으므로 [2:]로 슬라이싱
+        bin_num = bin(n1 | n2)[2:].zfill(n)
+        answer.append(bin_num.replace("0", " ").replace("1", "#"))
+    return answer
