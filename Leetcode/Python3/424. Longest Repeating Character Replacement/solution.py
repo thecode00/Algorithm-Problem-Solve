@@ -3,7 +3,29 @@
 
 from collections import Counter
 
-# TODO: Optimize cpde
+
+class Solution:  # Optimized
+    def characterReplacement(self, s: str, k: int) -> int:
+        left = 0
+        used_alpha = {}
+        max_len = 0
+
+        for right in range(len(s)):
+            if s[right] not in used_alpha:
+                used_alpha[s[right]] = 1
+            else:
+                used_alpha[s[right]] += 1
+
+            length = right - left + 1
+            if max(length - used_alpha.value()) <= k:
+                max_len = max(max_len, length)
+            else:
+                used_alpha[s[left]] -= 1
+                if used_alpha[s[left]] == 0:
+                    del used_alpha[s[left]]
+                left += 1
+
+        return max_len
 
 
 class Solution:
