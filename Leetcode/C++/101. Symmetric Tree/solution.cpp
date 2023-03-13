@@ -44,9 +44,10 @@ public:
             {
                 return false;
             }
+            // Pair
             q1.push(left->left);
             q2.push(right->right);
-
+            // Pair
             q1.push(left->right);
             q2.push(right->left);
         }
