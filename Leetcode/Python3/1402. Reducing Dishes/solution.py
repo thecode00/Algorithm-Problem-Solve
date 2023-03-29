@@ -2,6 +2,9 @@
 # Ref: https://leetcode.com/problems/reducing-dishes/solutions/563384/java-c-python-easy-and-concise/?orderBy=most_votes
 # Time complexity: O(N)
 
+from typing import List
+
+
 class Solution:
     def maxSatisfaction(self, satisfaction: List[int]) -> int:
         satisfaction.sort()
