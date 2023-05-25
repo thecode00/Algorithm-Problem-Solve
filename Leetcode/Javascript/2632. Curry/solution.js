@@ -6,16 +6,16 @@
  * @return {Function}
  */
 var curry = function (fn) {
-	// Use rest parameter
-	return function curried(...args) {
-		// function.length = number of function parameter
-		if (fn.length > args.length) {
-			return function (...args2) {
-				return curried(...args, ...args2);
-			};
-		}
-		return fn(...args);
-	};
+  // Use rest parameter
+  return function curried(...args) {
+    // function.length = number of function parameter
+    if (fn.length > args.length) {
+      return function (...args2) {
+        return curried(...args, ...args2);
+      };
+    }
+    return fn(...args);
+  };
 };
 
 /**
@@ -23,3 +23,8 @@ var curry = function (fn) {
  * const csum = curry(sum);
  * csum(1)(2) // 3
  */
+function sum(a, b, c) {
+  return a + b + c;
+}
+const csum = curry(sum);
+console.log(csum(1)(2, 3)); // 6
