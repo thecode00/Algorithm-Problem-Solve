@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/array-partition/
-
+# Time complexity: O(N)
 
 class Solution:
     def arrayPairSum(self, nums: List[int]) -> int:
