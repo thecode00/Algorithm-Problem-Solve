@@ -54,11 +54,7 @@ public:
 
     bool isEmpty()
     {
-        if (curSize > 0)
-        {
-            return false;
-        }
-        return true;
+        return curSize == 0;
     }
 
     bool isFull()
