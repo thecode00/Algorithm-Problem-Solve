@@ -1,9 +1,12 @@
 # https://leetcode.com/problems/implement-trie-prefix-tree/
 
+from collections import defaultdict
+
+
 class TrieNode:
     def __init__(self):
         self.word = False
-        self.child = {}
+        self.child = defaultdict(TrieNode)
 
 
 class Trie:
@@ -14,8 +17,6 @@ class Trie:
     def insert(self, word: str) -> None:
         node = self.root
         for char in word:
-            if char not in node.child:
-                node.child[char] = TrieNode()
             node = node.child[char]
         node.word = True    # Set True when the word is completed
 
