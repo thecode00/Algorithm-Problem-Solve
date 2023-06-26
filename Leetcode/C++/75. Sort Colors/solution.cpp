@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/sort-colors/description/
 
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -26,5 +27,14 @@ public:
                 swap(nums[i], nums[big--]);
             }
         }
+    }
+};
+
+class Solution // Built-in method
+{
+public:
+    void sortColors(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end());
     }
 };

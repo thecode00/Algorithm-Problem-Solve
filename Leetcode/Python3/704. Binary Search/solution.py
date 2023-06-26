@@ -1,6 +1,7 @@
 # https://leetcode.com/problems/binary-search/
 
 from bisect import bisect_left
+from typing import List
 
 
 class Solution:
@@ -17,9 +18,9 @@ class Solution:
         return -1   # When target dose not exist in nums
 
 
-class Solution:
+class Solution:  # Use built-in function
     def search(self, nums: List[int], target: int) -> int:
         index = bisect_left(nums, target)
-        if target == nums[index]:
-            return index
-        return -1
+        if index >= len(nums) or nums[index] != target:
+            return -1
+        return index
