@@ -9,7 +9,6 @@ class Solution // Implement adder
 public:
     int getSum(int a, int b)
     {
-        int MASK = 0x0FFFFFFFF;
         bitset<32> bitsA(a), bitsB(b), bitsResult(0);
         int carry = 0;
         for (int i = 0; i < 32; i++)
@@ -22,5 +21,13 @@ public:
             bitsResult[i] = sum;
         }
         return bitsResult.to_ulong();
+    }
+};
+
+class Solution
+{
+public:
+    int getSum(int a, int b)
+    {
     }
 };
