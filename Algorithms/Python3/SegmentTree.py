@@ -8,6 +8,7 @@ class SegmentTree:
 
     def build(self, node: int, start: int, end: int) -> None:
         """ 세그멘트 트리를 만드는 함수
+
         node: 
             현재 노드의 세그멘트 트리 안에서의 위치 계산하기 쉽게 루트노드를 1부터 시작
 
@@ -26,6 +27,7 @@ class SegmentTree:
 
     def qeury(self, node: int, start: int, end: int, left: int, right: int) -> int:
         """ 세그멘트 트리에서 값을 구하는 함수
+
         node: 
             현재노드의 인덱스
 
@@ -37,16 +39,17 @@ class SegmentTree:
         """
         if end < left or right < start:  # 담당 구역이 아니므로 0반환
             return 0
-        elif left <= start and end <= right:
+        elif start <= left and right <= end:
             return self.tree[node]
         else:
-            mid = (start + end) // 2
+            mid = (left + right) // 2
             total_left = self.qeury(node * 2, start, end, left, mid)
             total_right = self.qeury(node * 2 + 1, start, end, mid + 1, right)
             return total_left + total_right
 
     def update(self, node: int, start: int, end: int, value: int, index: int) -> None:
         """ 배열의 특정 인덱스의 원소를 업데이트하는 함수
+
         node:
             바꾸려고하는 원소의 인덱스
 
@@ -73,4 +76,5 @@ class SegmentTree:
 
 tree = SegmentTree([1, 2, 3, 4, 5, 6, 7])
 tree.build(1, 0, 6)
+print(tree.qeury(1, 1, 3, 0, len(tree.arr) - 1))    # 1에서 3까지의 합을 구함, 9
 print(tree.tree)
