@@ -1,6 +1,5 @@
 // https://cses.fi/problemset/task/1647
 
-// TODO: Solve
 #include <algorithm>
 #include <iostream>
 #include <climits>
@@ -16,7 +15,7 @@ public:
     SegmentTree(std::vector<int> &arr)
     {
         _arr = arr;
-        // TODO: _tree arr의 4배크기로 초기화방법 찾기
+        _tree.assign(arr.size() * 4, INT_MAX);
     }
 
     void build(int node, int left, int right)
@@ -38,7 +37,7 @@ public:
 
     int query(int node, int left, int right, int start, int end)
     {
-        if (end < left || right < start)
+        if (end < left || right < start) // Not query range
         {
             return INT_MAX;
         }
@@ -49,6 +48,7 @@ public:
         else
         {
             int mid = left + (right - left) / 2;
+            // Return min num left, right child
             return std::min(query(node * 2, left, mid, start, end), query(node * 2 + 1, mid + 1, right, start, end));
         }
     }
@@ -68,4 +68,11 @@ int main(int argc, char const *argv[])
     }
 
     SegmentTree *tree = new SegmentTree(arr);
+    int a, b, length = arr.size() - 1;
+    tree->build(1, 0, length);
+    for (int i = 0; i < q; i++)
+    {
+        std::cin >> a >> b;
+        std::cout << tree->query(1, 0, length, a - 1, b - 1) << "\n";
+    }
 }
