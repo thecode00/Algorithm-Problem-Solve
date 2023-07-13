@@ -1,63 +1,78 @@
 // https://cses.fi/problemset/task/1647
 
-// TODO: Solve
 #include <algorithm>
 #include <iostream>
+#include <climits>
 #include <vector>
+
+class SegmentTree
+{
+private:
+    std::vector<int> _arr;
+    std::vector<int> _tree;
+
+public:
+    SegmentTree(std::vector<int> &arr)
+    {
+        _arr = arr;
+        _tree.assign(arr.size() * 4, INT_MAX);
+    }
+
+    void build(int node, int left, int right)
+    {
+        if (left == right)
+        {
+            _tree[node] = _arr[left];
+        }
+        else
+        {
+            int mid = left + (right - left) / 2; // Prevent overflow
+            // build child node
+            build(node * 2, left, mid);
+            build(node * 2 + 1, mid + 1, right);
+            // When root node is 1, node * 2 = left childe, hode * 2 + 1 = right child
+            _tree[node] = std::min(_tree[node * 2], _tree[node * 2 + 1]);
+        }
+    }
+
+    int query(int node, int left, int right, int start, int end)
+    {
+        if (end < left || right < start) // Not query range
+        {
+            return INT_MAX;
+        }
+        else if (start <= left && right <= end)
+        {
+            return _tree[node];
+        }
+        else
+        {
+            int mid = left + (right - left) / 2;
+            // Return min num left, right child
+            return std::min(query(node * 2, left, mid, start, end), query(node * 2 + 1, mid + 1, right, start, end));
+        }
+    }
+};
 
 int main(int argc, char const *argv[])
 {
     int n, q; // Length of array, number of queries
     std::cin >> n >> q;
 
-    std::vector<long long> arr;
+    std::vector<int> arr;
     for (int i = 0; i < n; i++)
     {
-        long long input;
+        int input;
         std::cin >> input;
         arr.push_back(input);
     }
 
-    std::vector<int> height;
-    for (int i = 0; i < n + 1; i++)
-    {
-        if (i > 1)
-        {
-            height.push_back((i >> 1) + 1);
-        }
-        else
-        {
-            height.push_back(0);
-        }
-    }
-    std::cout << 14;
-    int step = 1;
-    std::vector<std::vector<long long>> table(height.back() + 1, std::vector<long long>(n, -1));
-    for (int y = 0; y < height.back() + 1; y++)
-    {
-        for (int x = 0; x < n; x++)
-        {
-            if (y == 0)
-            {
-                table[0].push_back(arr[x]);
-            }
-            else if (x + step < n)
-            {
-                table[y].push_back(std::min(table[y - 1][x], table[y - 1][x + step]));
-            }
-        }
-        step <<= 1;
-    }
-
+    SegmentTree *tree = new SegmentTree(arr);
+    int a, b, length = arr.size() - 1;
+    tree->build(1, 0, length);
     for (int i = 0; i < q; i++)
     {
-        int a, b;
         std::cin >> a >> b;
-        // Make to 0-index
-        a -= 1;
-        b -= 1;
-        int row = height[b - a + 1];
-        std::cout << std::min(table[row][a], table[row][b + 1 - (1 << row)]);
+        std::cout << tree->query(1, 0, length, a - 1, b - 1) << "\n";
     }
-    return 0;
 }
