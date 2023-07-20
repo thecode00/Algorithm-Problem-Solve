@@ -51,7 +51,7 @@ class SegmentTree:
         """ 배열의 특정 인덱스의 원소를 업데이트하는 함수
 
         node:
-            바꾸려고하는 원소의 인덱스
+            현재 원소의 인덱스
 
         start, end:
             현재 노드의 담당 범위
@@ -76,5 +76,7 @@ class SegmentTree:
 
 tree = SegmentTree([1, 2, 3, 4, 5, 6, 7])
 tree.build(1, 0, 6)
-print(tree.qeury(1, 1, 3, 0, len(tree.arr) - 1))    # 1에서 3까지의 합을 구함, 9
+print(tree.qeury(1, 0, 2, 0, len(tree.arr) - 1))    # 1에서 3까지의 합을 구함, 6
+tree.update(1, 0, len(tree.arr) - 1, 5, 0)  # 첫번째원소를 5로 바꿈
+print(tree.qeury(1, 0, 2, 0, len(tree.arr) - 1))    # 1에서 3까지의 합을 구함, 10
 print(tree.tree)
