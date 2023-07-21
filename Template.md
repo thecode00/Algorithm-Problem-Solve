@@ -9,3 +9,8 @@ input = sys.stdin.readline
 #include <vector>
 
 using namespace std;
+
+<!-- C++ fast IO -->
+
+std::cin.tie(0);
+std::cout.tie(0);
