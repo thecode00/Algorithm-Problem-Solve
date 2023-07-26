@@ -33,7 +33,7 @@ def solution(cacheSize, cities):
     cache = deque(maxlen=cacheSize)
     for city in cities:
         city = city.lower()
-        if city in cache:   # Set이 아닌 배열이므로 O(cacheSize)의 시간복잡도를 가짐
+        if city in cache:   # Set이 아닌 배열이므로 O(N)의 시간복잡도를 가짐
             cache.remove(city)
             time += 1
         else:
