@@ -7,8 +7,15 @@
  * @return {number}
  */
 var reduce = function (nums, fn, init) {
-	for (let idx = 0; idx < nums.length; idx++) {
-		init = fn(init, nums[idx]);
-	}
-	return init;
+  for (let idx = 0; idx < nums.length; idx++) {
+    init = fn(init, nums[idx]);
+  }
+  return init;
+};
+
+var reduce = function (nums, fn, init) {
+  nums.forEach((element) => {
+    init = fn(init, element);
+  });
+  return init;
 };
