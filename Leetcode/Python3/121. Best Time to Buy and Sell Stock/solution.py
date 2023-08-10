@@ -1,6 +1,9 @@
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
 
+from typing import List
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         propit: int = 0
@@ -22,3 +25,16 @@ class Solution:
             if buy_price > prices[idx]:
                 buy_price = prices[idx]
         return dp[-1]
+
+
+class Solution:  # Two pointer
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit = 0
+        left, right = 0, 1
+        while right < len(prices):
+            if prices[left] < prices[right]:
+                max_profit = max(max_profit, prices[right] - prices[left])
+            else:
+                left = right
+            right += 1
+        return max_profit
