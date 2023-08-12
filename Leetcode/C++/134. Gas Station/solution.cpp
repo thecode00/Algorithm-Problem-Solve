@@ -9,30 +9,19 @@ class Solution
 public:
     int canCompleteCircuit(vector<int> &gas, vector<int> &cost)
     {
-        int gasTotal = 0, costTotal = 0;
+        int totalGas = 0, curGas = 0, start = 0;
         for (int i = 0; i < gas.size(); i++)
         {
-            gasTotal += gas[i];
-            costTotal += cost[i];
-        }
-
-        if (gasTotal < costTotal)
-        {
-            return -1;
-        }
-
-        int start = 0, fuel = 0;
-        // Find start index
-        for (int i = 0; i < gas.size(); i++)
-        {
-            fuel += gas[i] - cost[i];
-            if (fuel < 0)
+            totalGas += gas[i] - cost[i];
+            curGas += gas[i] - cost[i];
+            // Previous points has more fuel than when they are start point but travel end current point so previous points cant start point
+            if (curGas < 0)
             {
-                fuel = 0;
+                curGas = 0;
                 start = i + 1;
             }
         }
-        return start;
+        return totalGas < 0 ? -1 : start;
     }
 };
 
