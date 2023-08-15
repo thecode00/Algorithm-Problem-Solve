@@ -18,3 +18,15 @@ class Solution:
             else:  # When loop break
                 answer += check
         return answer
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        strs.sort(key=lambda x: len(x))
+        index = 0
+        for s in strs[0]:   # Search prefix in smallest size string
+            for word in strs:
+                if word[index] != s:
+                    return strs[0][:index]
+            index += 1
+        return strs[0][:index]
