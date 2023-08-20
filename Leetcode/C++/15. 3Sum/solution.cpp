@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/3sum/
 
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -13,6 +14,7 @@ public:
         vector<vector<int>> result;
         for (int idx = 0; idx < (nums.size() - 2); idx++)
         {
+            // nums[idx] represents the combination of triplets that start with nums[idx]
             // Skip duplicate triplets
             if (idx > 0 && nums[idx] == nums[idx - 1])
             {
@@ -32,7 +34,7 @@ public:
                 }
                 else // Found triplet
                 {
-                    vector<int> triplet = {nums[idx], nums[left], nums[right]};
+                    vector<int> triplet = { nums[idx], nums[left], nums[right] };
                     result.push_back(triplet);
                     // Skip duplicate number
                     while (left < right && nums[left] == nums[left + 1])

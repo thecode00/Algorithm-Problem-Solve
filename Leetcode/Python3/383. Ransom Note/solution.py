@@ -1,5 +1,8 @@
 # https://leetcode.com/problems/ransom-note/\
 
+from collections import Counter
+
+
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         count = Counter(ransomNote) - Counter(magazine)
@@ -7,3 +10,9 @@ class Solution:
             return False
         else:
             return True
+
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        count_ransom, count_magazine = Counter(ransomNote), Counter(magazine)
+        return len(count_ransom - count_magazine) == 0
