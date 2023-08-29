@@ -22,7 +22,7 @@ class Solution:
         return head.next    # Head is dummy node so return head.next
 
 
-class Solution:
+class Solution:  # Recursive
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         # Assign a list with a small value as list1
         if (not list1) or (list2 and list1.val > list2.val):
@@ -30,3 +30,19 @@ class Solution:
         if list1:
             list1.next = self.mergeTwoLists(list1.next, list2)
         return list1
+
+
+class Solution:  # Swip node
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        if not list1 or not list2:
+            return list1 or list2
+        if list1.val > list2.val:
+            list1, list2 = list2, list1
+        root = list1
+        while list1.next and list2:
+            if list2.val < list1.next.val:
+                list1.next, list2, list1.next.next = list2, list2.next, list1.next
+            list1 = list1.next
+        if list2:
+            list1.next = list2
+        return root
