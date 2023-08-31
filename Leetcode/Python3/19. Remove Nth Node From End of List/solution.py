@@ -12,10 +12,29 @@ class Solution:
         fast = slow = head
         for _ in range(n):
             fast = fast.next
-        if not fast:    # When fast is None n = size so remove head 
+        if not fast:    # When fast is None n = size so remove head
             return head.next
         while fast.next:
             fast = fast.next
             slow = slow.next
         slow.next = slow.next.next
         return head
+
+
+class Solution:  # O(N) But two pass
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        length = 1
+        fast = head
+        while fast.next and fast.next.next:
+            length += 2
+            fast = fast.next.next
+
+        if fast.next:
+            length += 1
+
+        root = cur = ListNode(0, head)
+        # Move to prev node fo remove node
+        for _ in range(length - n):
+            cur = cur.next
+        cur.next = cur.next.next
+        return root.next
