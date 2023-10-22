@@ -1,6 +1,9 @@
 # https://leetcode.com/problems/pascals-triangle-ii/
 
 
+from typing import List
+
+
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
         pascal = [[1] * (i + 1) for i in range(rowIndex + 1)]
