@@ -5,12 +5,12 @@
  * @return {Function}
  */
 var compose = function (functions) {
-  return function (x) {
-    for (let idx = functions.length - 1; idx >= 0; idx--) {
-      x = functions[idx](x);
-    }
-    return x;
-  };
+	return function (x) {
+		for (let idx = functions.length - 1; idx >= 0; idx--) {
+			x = functions[idx](x);
+		}
+		return x;
+	};
 };
 
 /**
