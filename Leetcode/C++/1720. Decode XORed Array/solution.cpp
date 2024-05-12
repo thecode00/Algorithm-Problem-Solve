@@ -5,7 +5,11 @@ class Solution
 public:
     vector<int> decode(vector<int> &encoded, int first)
     {
-        // a = b ^ c, b = a ^ c
+        /*
+        a = b ^ c
+        c ^ a = c ^ (b ^ c) = c ^ c ^ b = 0 ^ b = b
+        b = c ^ a
+        */
         vector<int> result;
         result.emplace_back(first);
         for (auto num : encoded)
