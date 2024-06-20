@@ -49,3 +49,29 @@ def solution(n):    # 삼각형 그리기 중복제거 버전
         move_size -= 1
     # 2차원 리스트 평탄화
     return list(itertools.chain.from_iterable(answer))
+
+
+def solution(n):
+    triangle = [[0] * (i + 1) for i in range(n)]
+
+    x, y, num = 0, -1, 1
+    move_size = n
+    turn = 0
+
+    while (move_size > 0):
+        for _ in range(move_size):
+            if turn == 0:
+                y += 1
+            elif turn == 1:
+                x += 1
+            else:
+                x -= 1
+                y -= 1
+
+            triangle[y][x] = num
+            num += 1
+
+        turn = (turn + 1) % 3
+        move_size -= 1
+
+    return list(itertools.chain.from_iterable(triangle))
