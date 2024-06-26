@@ -1,60 +1,72 @@
 # https://leetcode.com/problems/design-hashmap/
+
 class ListNode:
-    def __init__(self, key, value):
+    def __init__(self, key, value, next=None):
         self.key = key
         self.value = value
-        self.next = None
+        self.next = next
+
 
 class MyHashMap:
-
+    # Use seperate chaining hash
     def __init__(self):
-        self.size = 20000
-        self.table = [None for _ in range(self.size)]
-
-    def hash(self, val):
-        return val * 31 * 31 % self.size
+        self.salt = 2999
+        self.table = [None] * 2999
 
     def put(self, key: int, value: int) -> None:
-        hash = self.hash(key)
-        node = ListNode(key, value)
-        if not self.table[hash]:    # When index of table dont save any data just add node
-            self.table[hash] = node
+        hash_key = key % self.salt
+
+        # When index of table dont save any data just add node
+        if not self.table[hash_key]:
+            self.table[hash_key] = ListNode(key, value)
             return
-        n = self.table[hash]
-        while n:
-            if n.key == key:    # If key already exist change value
-                n.value = value
+
+        # Hash collsion!
+        cur = self.table[hash_key]
+
+        while cur:
+            # If key already exist change value
+            if cur.key == key:
+                cur.value = value
                 return
-            if n.next == None:
-                n.next = node
+
+            if not cur.next:
+                break
+
+            cur = cur.next
+        cur.next = ListNode(key, value)
 
     def get(self, key: int) -> int:
-        hash = self.hash(key)
-        if not self.table[hash]:
+        hash_key = key % self.salt
+        if not self.table[hash_key]:
             return -1
-        n = self.table[hash]
-        while n:
-            if n.key == key:
-                return n.value
-            n = n.next
-        return -1   # When there is no saved value
-        
-    def remove(self, key: int) -> None:
-        hash = self.hash(key)
-        if not self.table[hash]:
-            return
-        n = self.table[hash]
-        if n.key == key:    # When first node delete
-            self.table[hash] = n.next
-            return
 
-        pre = None
-        while n:
-            if n.key == key:
-                pre.next = n.next
+        cur = self.table[hash_key]
+
+        while cur:
+            if cur.key == key:
+                return cur.value
+
+            cur = cur.next
+
+        return -1
+
+    def remove(self, key: int) -> None:
+        hash_key = key % self.salt
+        if self.table[hash_key]:
+            cur = self.table[hash_key]
+            if cur.key == key:
+                self.table[hash_key] = cur.next
                 return
-            pre, n = n, n.next
-        
+
+            prev = None
+
+            while cur:
+                if cur.key == key:
+                    prev.next = cur.next
+                    return
+                prev = cur
+                cur = cur.next
 
 # Your MyHashMap object will be instantiated and called as such:
 # obj = MyHashMap()
