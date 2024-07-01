@@ -9,19 +9,23 @@ class Solution
 public:
     vector<int> productExceptSelf(vector<int> &nums)
     {
-        vector<int> answer;
+        vector<int> result;
         int mul = 1;
-        for (int num : nums) // Multiple from left
+
+        for (int idx = 0; idx < nums.size(); idx++)
         {
-            answer.push_back(mul);
-            mul *= num;
-        }
-        mul = 1;
-        for (int idx = nums.size() - 1; idx >= 0; idx--) // Multiple from right
-        {
-            answer[idx] *= mul;
+            result.emplace_back(mul);
             mul *= nums[idx];
         }
-        return answer;
+
+        mul = 1;
+
+        for (int idx = nums.size() - 1; idx >= 0; idx--)
+        {
+            result[idx] *= mul;
+            mul *= nums[idx];
+        }
+
+        return result;
     }
 };

@@ -5,8 +5,6 @@ from collections import Counter
 import heapq
 from typing import List
 
-# TODO: 다른방법으로 풀기
-
 
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
@@ -39,13 +37,12 @@ class Solution:
         # Why (n + 1)? ex. tasks = ["A", "A"], n = 2 -> "A" - IDLE - IDLE - "A"
         # Include cooldown time(n) and complete task time(1)
         result = (most - 1) * (n + 1)
-        
+
         for val in count.values():
             # Now add last task of most task
             if val == most:
-                result += 1;
+                result += 1
         # Ex. tasks = ["A", "A", "A", "B", "B", "B", "C", "C", "C", "D", "D", "E"], n = 2
         # A##A##A -> AB#AB#AB -> ABCABCABC -> ABC(D)ABC(D)ABC -> ABCD(E)ABCDABC
         # We can insert every task end of most task cycle(ABC)
         return max(result, len(tasks))
-
