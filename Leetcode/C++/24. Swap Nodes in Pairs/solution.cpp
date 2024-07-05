@@ -10,25 +10,27 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution
 {
 public:
     ListNode *swapPairs(ListNode *head)
     {
-        ListNode *prev = new ListNode(0), *temp;
-        ListNode *answer = prev;
-        prev->next = head;
+        ListNode *root = new ListNode(-1, head);
+        ListNode *prev = root;
+
         while (head && head->next)
         {
-            ListNode *next = head->next;
-            prev->next = next;
-            temp = head;
-            head = next->next;
-            next->next = temp;
-            temp->next = head;
-            prev = prev->next->next;
+            ListNode *nextNode = head->next->next;
+            prev->next = head->next;
+            head->next->next = head;
+            head->next = nextNode;
+
+            prev = head;
+            head = head->next;
         }
-        // answer node is dummy so return answer->next
-        return answer->next;
+
+        // root node is dummy so return root->next
+        return root->next;
     }
 };
