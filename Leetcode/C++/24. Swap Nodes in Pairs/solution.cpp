@@ -34,3 +34,21 @@ public:
         return root->next;
     }
 };
+
+class Solution
+{
+public:
+    ListNode *swapPairs(ListNode *head)
+    {
+        // Recursion
+        if (head && head->next)
+        {
+            ListNode *nextNode = head->next;
+
+            head->next = swapPairs(nextNode->next);
+            nextNode->next = head;
+            return nextNode;
+        }
+        return head;
+    }
+};
