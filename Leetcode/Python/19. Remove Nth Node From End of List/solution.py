@@ -38,3 +38,21 @@ class Solution:  # O(N) But two pass
             cur = cur.next
         cur.next = cur.next.next
         return root.next
+
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        slow = fast = head
+        root = prev = ListNode(-1, head)
+
+        for _ in range(n):
+            fast = fast.next
+
+        while fast:
+            prev = slow
+            slow = slow.next
+            fast = fast.next
+
+        prev.next = slow.next
+
+        return root.next
