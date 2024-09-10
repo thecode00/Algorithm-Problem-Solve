@@ -12,6 +12,7 @@ function combinationSum(candidates: number[], target: number): number[][] {
     for (let idx = index; idx < candidates.length; idx++) {
       total += candidates[idx];
       prev.push(candidates[idx]);
+      // Backtracking
       if (total <= target) {
         dfs(prev, idx, total);
       }
