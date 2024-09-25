@@ -4,7 +4,24 @@
 from collections import Counter
 
 
-class Solution:  # Optimized
+class Solution:  # Second optimize
+    def characterReplacement(self, s: str, k: int) -> int:
+        max_repeat = 0
+        left = 0
+        used = defaultdict(int)
+
+        for right in range(len(s)):
+            used[s[right]] += 1
+            max_repeat = max(max_repeat, used[s[right]])
+
+            if right - left - max_repeat + 1 > k:
+                used[s[left]] -= 1
+                left += 1
+
+        return len(s) - left
+
+
+class Solution:  # Frist optimize
     def characterReplacement(self, s: str, k: int) -> int:
         left = 0
         used_alpha = {}
