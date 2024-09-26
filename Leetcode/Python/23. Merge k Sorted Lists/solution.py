@@ -14,7 +14,8 @@ class Solution:
         heap = []
         root = cur = ListNode(0)
         for idx in range(len(lists)):
-            if lists[idx]:  # Filter black linked list
+            if lists[idx]:  # Filter blank linked list
+                # ListNode cant compare so add index between value and listNode
                 heapq.heappush(heap, (lists[idx].val, idx, lists[idx]))
         while heap:
             node = heapq.heappop(heap)  # (value, index, linked list)
