@@ -1,3 +1,8 @@
+/**
+ * Time complexity: O(n ^ 2)
+ * @param {number[]} arr
+ * @returns
+ */
 const bubbleSort = (arr) => {
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
@@ -11,6 +16,11 @@ const bubbleSort = (arr) => {
   return arr;
 };
 
+/**
+ * Time complexity: O(n log n)
+ * @param {number[]} arr
+ * @returns
+ */
 const mergeSort = (arr) => {
   if (arr.length <= 1) {
     // 이미 정렬된 경우
