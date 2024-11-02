@@ -5,8 +5,7 @@ class Solution:  # Second try, divide and conquer
         if n <= 1:
             return "0"
 
-        # Bits length = (2 ^ n) - 1
-        length = (2 ** n) - 1
+        length = (1 << n) - 1
         # k is 1-index so add 1
         half = (length // 2) + 1
 

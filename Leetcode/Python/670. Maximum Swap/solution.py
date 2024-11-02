@@ -9,7 +9,7 @@ class Solution:
 
         for idx in range(length - 2, -1, -1):
             # Need to swap with the rightmost number that is greater than your current number, 
-            # so you record the indices of numbers that are greater than or equal to your current number
+            # so if the numbers are equal, you should record the index of the number on the right
             # If num = 3444, max_idx will be [3, 3, 3, 3]
             if int(num_list[idx]) <= int(num_list[max_idx[idx + 1]]):
                 max_idx[idx] = max_idx[idx + 1]
