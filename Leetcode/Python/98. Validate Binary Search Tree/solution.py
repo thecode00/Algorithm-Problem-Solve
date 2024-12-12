@@ -17,7 +17,7 @@ class Solution:
                 root = root.left
             root = bst_list.pop()
 
-            if prev != None and prev >= root.val:
+            if prev is not None and prev >= root.val:
                 return False
 
             prev = root.val
