@@ -20,11 +20,10 @@ class Solution:
         move_count = 0
         result = []
 
+        # In Python, the modulo operation automatically adjusts for negative numbers,
+        # ensuring the result always falls within the range of the divisor, so there is no need to handle negatives explicitly.
         for idx in range(length):
             move_count += diff_array[idx]
-            if move_count < 0:
-                move_count += 26
-
             shifted_char = chr(
                 (ord(s[idx]) - ord("a") + move_count) % 26 + ord("a"))
             result.append(shifted_char)
