@@ -1,5 +1,19 @@
 // https://leetcode.com/problems/filter-elements-from-array/
 
+type Fn = (n: number, i: number) => any;
+
+function filter(arr: number[], fn: Fn): number[] {
+  const newArray: number[] = [];
+
+  arr.forEach((item, idx) => {
+    if (fn(item, idx)) {
+      newArray.push(item);
+    }
+  });
+
+  return newArray;
+}
+
 function filter(arr: number[], fn: (n: number, i: number) => any): number[] {
   const newArray: number[] = [];
   let index: number = 0;
