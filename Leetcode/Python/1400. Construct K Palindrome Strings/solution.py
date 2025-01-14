@@ -13,7 +13,7 @@ class Solution:
         for letter in s:
             letter_count[letter] += 1
 
-        # A palindrome allows for one odd-count character, so the minimum number of characters required for a palindrome is an odd number
+        # A palindrome allows for one odd-count character, so minimum number of palindrome is an odd-count number
         for count in letter_count.values():
             if count % 2 != 0:
                 palindrome_count += 1
