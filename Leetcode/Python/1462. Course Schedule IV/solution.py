@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/course-schedule-iv/description
 
-class Solution:
+class Solution:  # Topological sort
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
         in_degree = [0] * numCourses
         graph = [[] for _ in range(numCourses)]
