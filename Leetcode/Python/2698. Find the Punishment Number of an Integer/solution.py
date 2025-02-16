@@ -18,9 +18,9 @@ class Solution:
         if num == target:
             return True
 
-        # Search recursivly split number and check target
+        # Search recursivly split number and check 1, 2, 3 digits, 1 <= n <= 1000 so dont need check 4 digits
         # Optimized string convert
-        return self.isPunishment(num // 10, target - num % 10) or self.isPunishment(num // 100, target - num % 100)
+        return self.isPunishment(num // 10, target - num % 10) or self.isPunishment(num // 100, target - num % 100) or self.isPunishment(num // 1000, target - num % 1000)
 
 
 class Solution:
