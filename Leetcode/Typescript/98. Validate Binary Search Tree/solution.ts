@@ -35,3 +35,37 @@ function isValidBST(root: TreeNode | null): boolean {
   }
   return true;
 }
+
+// Recursive
+function isValidBST(root: TreeNode | null): boolean {
+  return rangeSearch(root, null, null);
+}
+
+function rangeSearch(
+  root: TreeNode | null,
+  minValue: number | null,
+  maxValue: number | null
+) {
+  if (!root) {
+    return true;
+  }
+
+  if (
+    (minValue !== null && root.val <= minValue) ||
+    (maxValue !== null && maxValue <= root.val)
+  ) {
+    return false;
+  }
+
+  const left = rangeSearch(root.left, minValue, root.val);
+  if (!left) {
+    return false;
+  }
+
+  const right = rangeSearch(root.right, root.val, maxValue);
+  if (!right) {
+    return false;
+  }
+
+  return true;
+}
