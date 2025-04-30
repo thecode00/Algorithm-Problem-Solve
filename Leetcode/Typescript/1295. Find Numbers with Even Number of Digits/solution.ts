@@ -3,6 +3,28 @@
 function findNumbers(nums: number[]): number {
   let count = 0;
 
+  for (const num of nums) {
+    if (getNumberOfDigit(num) % 2 === 0) {
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
+function getNumberOfDigit(num: number): number {
+  let digitCount = 1;
+
+  while (10 <= num) {
+    digitCount += 1;
+    num = Math.floor(num / 10);
+  }
+
+  return digitCount;
+}
+function findNumbers(nums: number[]): number {
+  let count = 0;
+
   for (let num of nums) {
     let digits = 0;
 
