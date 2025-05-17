@@ -6,7 +6,7 @@ input = sys.stdin.readline
 print = sys.stdout.write
 
 string = input().strip().lower()
-vowels = ["a", "o", "y", "e", "u", "i"]
+vowels = set(["a", "o", "y", "e", "u", "i"])
 for s in string:
     if s not in vowels:
         print("." + s)

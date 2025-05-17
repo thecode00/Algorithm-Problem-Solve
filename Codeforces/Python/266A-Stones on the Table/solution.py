@@ -20,3 +20,8 @@ while idx < n:
         taken += 1
 
 print(taken)
+
+# Pythonic
+n = int(input())
+s = input().strip()
+print(sum(s[i] == s[i-1] for i in range(1, len(s))))
