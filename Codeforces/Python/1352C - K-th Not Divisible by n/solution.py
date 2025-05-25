@@ -3,6 +3,7 @@ https://codeforces.com/problemset/problem/1352/C
 Time complexity: O(1)
 """
 
+from math import ceil
 import sys
 
 input = sys.stdin.readline
