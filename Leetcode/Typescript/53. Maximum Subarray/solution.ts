@@ -12,3 +12,21 @@ function maxSubArray(nums: number[]): number {
 
   return maxNum;
 }
+
+function maxSubArray(nums: number[]): number {
+  let maxSum = Number.MIN_SAFE_INTEGER;
+  let total = 0;
+
+  for (const num of nums) {
+    total += num;
+
+    if (maxSum < total) {
+      maxSum = total;
+    }
+    if (total < 0) {
+      total = 0;
+    }
+  }
+
+  return maxSum;
+}

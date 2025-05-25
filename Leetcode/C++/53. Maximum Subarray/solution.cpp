@@ -1,8 +1,8 @@
 // https://leetcode.com/problems/maximum-subarray/description/
 // Time complexity: O(N)
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -11,20 +11,24 @@ class Solution
 public:
     int maxSubArray(vector<int> &nums)
     {
-        vector<int> dp;
-        dp.push_back(nums[0]);
-        for (int i = 1; i < nums.size(); i++)
+        int maxSum = INT_MIN;
+        int total = 0;
+
+        for (auto num : nums)
         {
-            if (dp.back() < 0)
+            total += num;
+
+            if (maxSum < total)
             {
-                dp.push_back(nums[i]);
+                maxSum = total;
             }
-            else
+            if (total < 0)
             {
-                dp.push_back(dp.back() + nums[i]);
+                total = 0;
             }
         }
-        return *max_element(dp.begin(), dp.end());
+
+        return maxSum;
     }
 };
 
