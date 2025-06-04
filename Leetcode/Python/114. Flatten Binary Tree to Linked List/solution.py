@@ -8,6 +8,33 @@
 #         self.right = right
 from typing import Optional
 
+# preOrder
+
+
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        prev = None
+
+        def pre_order(node: Optional[TreeNode]):
+            if not node:
+                return
+
+            nonlocal prev
+            if prev:
+                prev.left = None
+                prev.right = node
+
+            prev = node
+
+            right = node.right
+            pre_order(node.left)
+            pre_order(right)
+
+        pre_order(root)
+
 
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
