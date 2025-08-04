@@ -6,22 +6,20 @@ from collections import defaultdict
 
 class Solution: # Sliding window
     def totalFruit(self, fruits: List[int]) -> int:
-        if len(fruits) <= 2:
-            return len(fruits)
+        basket = defaultdict(int)
+        max_length = 0
+        left = 0
 
-        max_fruits = 0
-        count = defaultdict(int)
-        left = right = 0
-        for right in range(len(fruits)):
-            count[fruits[right]] += 1
+        for right, fruit in enumerate(fruits):
+            basket[fruit] += 1
 
-            if len(count) <= 2:
-                max_fruits = max(max_fruits, sum(count.values()))
-            else:   
-                while len(count) > 2:
-                    count[fruits[left]] -= 1
-                    if count[fruits[left]] == 0:
-                        del count[fruits[left]]
-                    left += 1
-        return max_fruits
-                
+            while len(basket) > 2:
+                basket[fruits[left]] -= 1
+
+                if basket[fruits[left]] == 0:
+                    del basket[fruits[left]]
+                left += 1
+            
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
